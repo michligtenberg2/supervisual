@@ -43,7 +43,7 @@
 1. Clone de repository:
 
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/michligtenberg2/supervisual.git
    ```
 2. Maak een virtuele omgeving aan:
 
