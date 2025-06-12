@@ -2,9 +2,8 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PyQt6.QtWidgets import QApplication
-from gui.video_effect_gui import VideoEffectGUI
 from gui.photo_spectrogram_gui import PhotoSpectroGUI
-from gui.preview_mp4_gui import PreviewMP4GUI
+from gui.video_effect_gui import VideoEffectGUI
 from gui.mp4_concat_gui import MP4ConcatGUI
 from PyQt6.QtWidgets import QTabWidget, QVBoxLayout, QWidget, QProgressBar, QTextEdit
 from PyQt6.QtCore import Qt
@@ -15,15 +14,13 @@ class SupervisualMegaTool(QTabWidget):
         self.setWindowTitle("Supervisual MegaTool Suite")
         self.setMinimumSize(650, 500)
 
-        # Add each tool as a tab
+        # Eerst Video Effect en Photo Spectrogram, dan MP4 Concat als laatste tab
         self.video_tab = VideoEffectGUI()
-        self.photo_tab = PhotoSpectroGUI()
-        self.preview_tab = PreviewMP4GUI()
-        self.concat_tab = MP4ConcatGUI()
         self.addTab(self.video_tab, "Video Effect")
+        self.photo_tab = PhotoSpectroGUI()
         self.addTab(self.photo_tab, "Photo Spectrogram")
-        self.addTab(self.preview_tab, "MP4 Preview")
-        self.addTab(self.concat_tab, "MP4 Concatenation")
+        self.concat_tab = MP4ConcatGUI()
+        self.addTab(self.concat_tab, "MP4 Concat")
 
         # Add a global log and progress bar at the bottom
         log_layout = QVBoxLayout()
@@ -47,18 +44,14 @@ class SupervisualMegaTool(QTabWidget):
         container.setLayout(main_layout)
         self.main_window = container
 
-        # Connect signals from each tab to update the log and progress bar
+        # Signals van alle tabs connecten
         self._connect_tab_signals(self.video_tab)
         self._connect_tab_signals(self.photo_tab)
-        self._connect_tab_signals(self.preview_tab)
         self._connect_tab_signals(self.concat_tab)
-        # Listen for new threads created in tabs
         if hasattr(self.video_tab, 'thread_created'):
             self.video_tab.thread_created.connect(self._connect_thread_signals)
         if hasattr(self.photo_tab, 'thread_created'):
             self.photo_tab.thread_created.connect(self._connect_thread_signals)
-        if hasattr(self.preview_tab, 'thread_created'):
-            self.preview_tab.thread_created.connect(self._connect_thread_signals)
         if hasattr(self.concat_tab, 'thread_created'):
             self.concat_tab.thread_created.connect(self._connect_thread_signals)
 

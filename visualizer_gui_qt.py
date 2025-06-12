@@ -155,7 +155,7 @@ class VisualizerGUI(QWidget):
         self.setLayout(layout)
 
     def update_preview(self, effect_name):
-        gif_path = f"previews/{effect_name}.gif"
+        gif_path = f"previews1/{effect_name}.gif"
         if os.path.exists(gif_path):
             self.preview.setPixmap(QPixmap(gif_path).scaled(240, 135, Qt.AspectRatioMode.KeepAspectRatio))
         else:

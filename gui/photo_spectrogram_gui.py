@@ -1,9 +1,11 @@
 import sys
 import os
+import glob
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QPushButton, QFileDialog, QLabel, QComboBox, QColorDialog, QLineEdit, QTextEdit, QSlider, QHBoxLayout
 )
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
+from PyQt6.QtGui import QPixmap, QMovie
 import subprocess
 import re
 
@@ -79,6 +81,18 @@ class PhotoSpectroGUI(QWidget):
         slider_layout.addWidget(self.strength_slider)
         layout.addLayout(slider_layout)
 
+        # Preview GIF
+        self.preview = QLabel()
+        self.preview.setFixedSize(240, 135)
+        self.preview.setStyleSheet("border: 1px solid black;")
+        gif_path = "previews1/spectrogram_photo.gif"
+        if os.path.exists(gif_path):
+            movie = QMovie(gif_path)
+            movie.setScaledSize(self.preview.size())
+            self.preview.setMovie(movie)
+            movie.start()
+        layout.addWidget(self.preview)
+
         # Start knop
         self.run_btn = QPushButton("▶️ Genereer Preview")
         self.run_btn.clicked.connect(self.run_preview)
@@ -87,7 +101,7 @@ class PhotoSpectroGUI(QWidget):
         # Console
         self.console = QTextEdit()
         self.console.setReadOnly(True)
-        self.console.setMinimumHeight(60)
+        self.console.setMinimumHeight(40)
         layout.addWidget(self.console)
 
         # Log

@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import (
     QLabel, QComboBox, QColorDialog, QLineEdit, QTextEdit, QHBoxLayout
 )
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
+from PyQt6.QtGui import QPixmap, QMovie
 import subprocess
 import re
 
@@ -55,6 +56,7 @@ class PreviewMP4GUI(QWidget):
             if not f.endswith("__init__.py")
         ])
         self.effect_dropdown.addItems(available_effects)
+        self.effect_dropdown.currentTextChanged.connect(self.update_preview)
 
         # Audio file chooser
         self.audio_button = QPushButton("🎵 Kies audio (.mp3/.wav)")
@@ -90,13 +92,19 @@ class PreviewMP4GUI(QWidget):
         # Console output
         self.console = QTextEdit()
         self.console.setReadOnly(True)
+        self.console.setMinimumHeight(40)
         self.console.setStyleSheet("background-color: #222; color: #0f0; font-family: monospace; padding: 8px;")
-        self.console.setMinimumHeight(60)
 
         # Log output
         self.log = QLineEdit()
         self.log.setReadOnly(True)
         self.log.setStyleSheet("background-color: #111; color: #fff; font-family: monospace; padding: 4px;")
+
+        # Preview GIF per effect
+        self.preview = QLabel()
+        self.preview.setFixedSize(240, 135)
+        self.preview.setStyleSheet("border: 1px solid black;")
+        self.update_preview(self.effect_dropdown.currentText())
 
         # Layout
         layout.addWidget(self.effect_label)
@@ -112,6 +120,7 @@ class PreviewMP4GUI(QWidget):
         layout.addWidget(self.console)
         layout.addWidget(QLabel("📜 Log bestand (laatste pad):"))
         layout.addWidget(self.log)
+        layout.addWidget(self.preview)
         self.setLayout(layout)
 
     def choose_audio(self):
@@ -174,6 +183,16 @@ class PreviewMP4GUI(QWidget):
             self.run_button.setEnabled(True)
         self.preview_thread.done_signal.connect(on_done)
         self.preview_thread.start()
+
+    def update_preview(self, effect_name):
+        gif_path = f"previews1/{effect_name}.gif"
+        if os.path.exists(gif_path):
+            movie = QMovie(gif_path)
+            movie.setScaledSize(self.preview.size())
+            self.preview.setMovie(movie)
+            movie.start()
+        else:
+            self.preview.clear()
 
     def update_progress(self, value):
         pass

@@ -7,6 +7,7 @@ from PyQt6.QtCore import Qt, QThread, pyqtSignal
 import subprocess
 import glob
 import re
+from PyQt6.QtGui import QPixmap, QMovie
 
 class VideoEffectThread(QThread):
     log_signal = pyqtSignal(str)
@@ -59,14 +60,23 @@ class VideoEffectGUI(QWidget):
         # Effect selector
         self.effect_label = QLabel("🎨 Effect:")
         self.effect_dropdown = QComboBox()
+        # Filter photo_spectrogram uit de lijst
         available_effects = sorted([
             os.path.splitext(os.path.basename(f))[0]
             for f in glob.glob("effects/*.py")
-            if not f.endswith("__init__.py")
+            if not f.endswith("__init__.py") and os.path.splitext(os.path.basename(f))[0] != "photo_spectrogram"
         ])
         self.effect_dropdown.addItems(available_effects)
+        self.effect_dropdown.currentTextChanged.connect(self.update_preview)
         layout.addWidget(self.effect_label)
         layout.addWidget(self.effect_dropdown)
+
+        # Preview GIF per effect
+        self.preview = QLabel()
+        self.preview.setFixedSize(240, 135)
+        self.preview.setStyleSheet("border: 1px solid black;")
+        self.update_preview(self.effect_dropdown.currentText())
+        layout.addWidget(self.preview)
 
         # Kleur
         self.color = "#FFFFFF"
@@ -183,6 +193,16 @@ class VideoEffectGUI(QWidget):
     def set_progress_max(self, value):
         # For local progress bar, if any. For mega-tool, signal is already connected.
         pass
+
+    def update_preview(self, effect_name):
+        gif_path = f"previews1/{effect_name}.gif"
+        if os.path.exists(gif_path):
+            movie = QMovie(gif_path)
+            movie.setScaledSize(self.preview.size())
+            self.preview.setMovie(movie)
+            movie.start()
+        else:
+            self.preview.clear()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
