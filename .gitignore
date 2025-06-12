@@ -131,3 +131,8 @@ Thumbs.db
 # Output folders (optional, remove if you want to version these)
 output/
 previews/
+
+# Video and preview files
+*.mp4
+*.mov
+*.avi
