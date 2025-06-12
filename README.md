@@ -1,75 +1,87 @@
 # 🎬 Supervisual MegaTool Suite
 
-Welkom bij **Supervisual MegaTool Suite** – dé alles-in-één desktopapplicatie voor audio-reactieve video- en foto-effecten! Met een moderne, gebruiksvriendelijke interface en krachtige batch- en preview-workflows.
+**Supervisual MegaTool Suite** is een desktopapplicatie voor het maken van audio-reactieve video’s en beelden. Alles wat je nodig hebt zit in één app, met overzichtelijke tabbladen en een live preview-optie.
 
-## 🚀 Belangrijkste Features
+## 🚀 Features
 
-- **🎛️ MegaTool GUI**: Eén overzichtelijke app met tabbladen voor alle workflows:
-  - Video Effecten
-  - Foto Spectrogrammen
-  - MP4 Previews
-  - MP4 Samenvoegen
-- **🎨 Audio-reactieve effecten**: Kies uit diverse visuele effecten die reageren op muziek of geluid.
-- **🖼️ Foto & Video**: Overlay effecten op zowel foto's als video's, met ondersteuning voor externe audio.
-- **⚡ Live Preview**: Bekijk direct een korte preview van je gekozen effect en instellingen.
-- **🛠️ Effect Parameters**: Pas sterkte, kleur, transparantie en meer aan met sliders en kleurkiezers.
-- **📂 Outputbeheer**: Kies eenvoudig je output-bestand en alle resultaten worden netjes opgeslagen.
-- **🔄 Batch & Interactief**: Zowel snelle previews als volledige video-rendering mogelijk.
-- **📊 Voortgangsbalk & Log**: Altijd zicht op de voortgang en log van je bewerkingen.
+* **🎛️ GUI met meerdere workflows**: Eén applicatie met tabbladen voor:
 
-## 🖥️ Tabbladen in de MegaTool
+  * Video Effecten
+  * Foto Spectrogrammen
+  * MP4 Previews
+  * MP4 Samenvoegen
+* **🎨 Audio-reactieve effecten**: Visuele effecten die reageren op audio.
+* **🖼️ Voor foto en video**: Ondersteunt zowel stilstaand beeld als video met externe audio.
+* **⚡ Live preview**: Bekijk snel een korte versie van je gekozen effect en instellingen.
+* **🛠️ Parameters instellen**: Verander kleur, transparantie, intensiteit en meer via sliders en kleurkiezers.
+* **📂 Output beheren**: Kies je eigen bestandsnaam en outputlocatie.
+* **🔄 Batch of interactief**: Render één video of meerdere tegelijk.
+* **📊 Voortgang en log**: Altijd zicht op wat de app doet.
 
-- **🎬 Video Effect**: Voeg audio-reactieve overlays toe aan video's. Kies effect, kleur, audio, output en effectsterkte.
-- **🖼️ Photo Spectrogram**: Maak een MP4 van een foto met spectrogram-overlay en audio-reactieve vervorming.
-- **🎞️ MP4 Preview**: Genereer snel een korte MP4-preview van een effect op audio.
-- **➕ MP4 Concatenation**: Plak meerdere MP4-bestanden samen tot één video.
+## 🖥️ Tabbladen
 
-## 🧩 Effecten
+* **🎬 Video Effect**: Voeg een audio-reactief effect toe aan een video. Kies kleur, intensiteit en bijbehorende audio.
+* **🖼️ Photo Spectrogram**: Genereer een korte video van een foto met spectrogram en optionele vervorming.
+* **🎞️ MP4 Preview**: Maak een korte MP4 met een voorbeeld van het gekozen effect.
+* **➕ MP4 Samenvoegen**: Combineer meerdere MP4’s tot één doorlopende video.
 
-- Lissajous
-- Waveform Rings
-- Oscilloscope
-- Fractal Flames
-- Spectrogram
-- Pulse Flashes
-- ASCII
-- Matrix Rain
-- Rotating Shapes
-- Photo Spectrogram (met face warping)
+## 🧩 Beschikbare effecten
+
+* Lissajous
+* Waveform Rings
+* Oscilloscope
+* Fractal Flames
+* Spectrogram
+* Pulse Flashes
+* ASCII
+* Matrix Rain
+* Rotating Shapes
+* Photo Spectrogram (met face warping)
 
 ## ⚙️ Installatie
 
-1. **Clone de repo**
+1. Clone de repository:
+
+   ```bash
+   git clone <repo-url>
+   ```
 2. Maak een virtuele omgeving aan:
+
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
    ```
-3. Installeer de vereiste packages:
+3. Installeer de vereiste dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
-4. Start de MegaTool:
+4. Start de applicatie:
+
    ```bash
    python3 main.py
    ```
 
 ## 📁 Mappenstructuur
 
-- `gui/` – Alle PyQt6 GUI modules
-- `engine/` – Kernlogica voor rendering en audio/video verwerking
-- `effects/` – Alle losse effectmodules
-- `output/` – Renderresultaten
-- `previews/` – Previewvideo's
+* `gui/` – GUI-bestanden (PyQt6)
+* `engine/` – De logica voor rendering en verwerking
+* `effects/` – Alle losse visuele effecten
+* `output/` – Gerenderde bestanden
+* `previews/` – Previewbestanden
 
 ## 📝 Overig
 
-- Alle output wordt standaard opgeslagen in de juiste map, tenzij je zelf een pad kiest.
-- De voortgangsbalk en log zijn altijd zichtbaar onderin de app.
-- De app is volledig Nederlandstalig en geschikt voor zowel beginners als gevorderden.
+* Outputbestanden worden standaard opgeslagen in de juiste map (tenzij je zelf een andere kiest).
+* Voortgangsbalk en logvenster zijn altijd zichtbaar onderin.
+* Interface is Nederlandstalig. Geschikt voor zowel beginners als gevorderden.
 
 ---
 
-Veel plezier met Supervisual! 🎉
+Veel succes (en misschien wat plezier) met Supervisual.
 
-*Vragen, bugs of feature requests? Maak een issue aan op GitHub!*
+*Voor bugs of ideeën: open een issue op GitHub.*
+
+---
+
+Laat gerust weten als je nog een bepaalde stijl of toon zoekt (serieuzer, technischer, of juist informeler).
