@@ -74,8 +74,6 @@
 
 * Outputbestanden worden standaard opgeslagen in de juiste map (tenzij je zelf een andere kiest).
 * Voortgangsbalk en logvenster zijn altijd zichtbaar onderin.
-* Interface is Nederlandstalig. Geschikt voor zowel beginners als gevorderden.
-
 ---
 
 Veel succes (en misschien wat plezier) met Supervisual.
