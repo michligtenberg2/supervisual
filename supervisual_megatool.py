@@ -1,13 +1,12 @@
 import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from PyQt6.QtWidgets import QApplication
-from gui.video_effect_gui import VideoEffectGUI
-from gui.photo_spectrogram_gui import PhotoSpectroGUI
-from gui.preview_mp4_gui import PreviewMP4GUI
-from gui.mp4_concat_gui import MP4ConcatGUI
-from PyQt6.QtWidgets import QTabWidget, QVBoxLayout, QWidget, QProgressBar, QTextEdit
+from PyQt6.QtWidgets import QApplication, QTabWidget, QVBoxLayout, QWidget, QProgressBar, QTextEdit
 from PyQt6.QtCore import Qt
+
+# Import your existing GUIs
+from video_effect_gui import VideoEffectGUI
+from photo_spectrogram_gui import PhotoSpectroGUI
+from preview_mp4_gui import PreviewMP4GUI
+from mp4_concat_gui import MP4ConcatGUI
 
 class SupervisualMegaTool(QTabWidget):
     def __init__(self):
@@ -36,6 +35,7 @@ class SupervisualMegaTool(QTabWidget):
         self.progress_bar.setMaximum(100)
         self.progress_bar.setValue(0)
         log_layout.addWidget(self.progress_bar)
+        # Remove log_widget and use log_layout directly
 
         # Add the log/progress bar below the tabs
         main_layout = QVBoxLayout()
